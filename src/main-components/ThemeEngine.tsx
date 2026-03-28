@@ -97,7 +97,7 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
                             }
                         }}
                     >
-                        <img src={undoIcon} alt="icon" width={16} height={16} />
+                        <img src={undoIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                         Undo
                     </Button>
                     <Button
@@ -116,7 +116,7 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
                             }
                         }}
                     >
-                        <img src={redoIcon} alt="icon" width={16} height={16} />
+                        <img src={redoIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                         Redo
                     </Button>
                 </Group>

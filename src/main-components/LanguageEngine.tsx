@@ -63,7 +63,7 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
               </Menu.Dropdown>
             </Menu>
             <div>
-              <img src={interchangeIcon} alt="icon" width={16} height={16} />
+              <img src={interchangeIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
             </div>
             <Menu
               transitionProps={{ transition: 'pop-top-right' }}

@@ -50,7 +50,7 @@ const LayoutEngine = ({ setLayout, selectedPaletteId, mode }: LayoutEngineProps)
                         style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }}
                         onClick={() => setLayout('grid')}
                     >
-                        <img src={gridViewIcon} alt="icon" width={16} height={16} />
+                        <img src={gridViewIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                         Grid
                     </Button>
                     <Button
@@ -62,7 +62,7 @@ const LayoutEngine = ({ setLayout, selectedPaletteId, mode }: LayoutEngineProps)
                         style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }}
                         onClick={() => setLayout('list')}
                     >
-                        <img src={listViewIcon} alt="icon" width={16} height={16} />
+                        <img src={listViewIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                         List
                     </Button>
                 </Group>
@@ -79,7 +79,7 @@ const LayoutEngine = ({ setLayout, selectedPaletteId, mode }: LayoutEngineProps)
                             >
                                 <img src={greenTick} alt="icon" width={16} height={16} />
                                 {option.shortCutKeys}
-                                <img src={option.icon} alt="icon" width={16} height={16} />
+                                <img src={option.icon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                                 {option.featureName}
                             </div>
                         )

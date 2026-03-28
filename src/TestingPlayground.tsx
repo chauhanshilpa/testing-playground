@@ -24,7 +24,7 @@ const TestingPlayground = () => {
                 background: `linear-gradient(to bottom right, ${theme.color1} 0%, ${theme.color2}, ${theme.color3}, ${theme.color4})`,
             }}>
             <header id="header">
-                < Header />
+                < Header mode={mode} selectedPaletteId={selectedPaletteId} />
             </header >
             <main id="main-content">
                 <Container my="md">

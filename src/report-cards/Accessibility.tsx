@@ -61,9 +61,9 @@ const Accessibility = ({ selectedPaletteId, mode }: AccessibilityProps) => {
                 background: `${theme.color4}40`,
               }}
                 className={`option ${mode === 'light' ? 'option-dark' : 'option-light'}`}>
-                <img src={option.icon} alt="icon" width={16} height={16} />
+                <img src={option.icon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                 {option.shortCutKeys}
-                <img src={chevronRight} alt="icon" width={16} height={16} />
+                <img src={chevronRight} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
                 {option.featureName}
               </div>
             )

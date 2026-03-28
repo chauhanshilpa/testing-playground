@@ -82,7 +82,9 @@ const AiChatAssistance = ({ selectedPaletteId, mode }: AiChatAssistanceProps) =>
                                 styles={{
                                     input: {
                                         backgroundColor: `${theme.color4}40`,
+                                        color: mode === 'light' ? 'white' : 'black'
                                     },
+
                                 }}
                                 classNames={{ input: classes.chatInput }}
                                 onChange={(event) => setInputText(event.target.value)}
