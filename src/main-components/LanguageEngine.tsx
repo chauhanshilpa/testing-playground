@@ -1,0 +1,104 @@
+import { useState, useEffect, useMemo } from "react";
+import { Button, Card, Group, Text, Menu } from '@mantine/core';
+import classes from '../../src/css-module/Card.module.css';
+import translate from "translate";
+import interchangeIcon from "../../src/assets/interchangeIcon.svg";
+import {
+  IconChevronDown,
+} from '@tabler/icons-react';
+import { languageList } from "../constants";
+import UseCustomThemes from "../custom-hooks/UseCustomThemes";
+
+interface LanguageEngineProps {
+  selectedPaletteId: number;
+  mode: string;
+}
+const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
+  const [inputText, setInputText] = useState('Good Morning !')
+  const [outputText, setOutputText] = useState('Bonjour!')
+  const [lang, setLang] = useState({ firstLanguage: { name: 'English', code: 'en' }, secondLanguage: { name: 'French', code: 'fr' } })
+  const { theme } = useMemo(() => UseCustomThemes({ selectedPaletteId }), [selectedPaletteId])
+
+  useEffect(() => {
+    (async function () {
+      const text = await translate(inputText, { to: lang.secondLanguage.code, from: lang.firstLanguage.code });
+      setOutputText(text);
+    })()
+  }, [inputText])
+
+  return (
+    <>
+      <Card withBorder radius="md" p="md" className={classes.card} style={{ color: mode === 'light' ? 'white' : 'black', background: `${theme.color2}50`, }}>
+        <Card.Section className={classes.section} mt="md">
+          <Group justify="apart">
+            <Text fz="lg" fw={500}>
+              Language Engine
+            </Text>
+          </Group>
+        </Card.Section>
+
+        <Card.Section className={classes.section}>
+          <Group gap={7} mt={5}>
+            {/*  */}
+            <Menu
+              transitionProps={{ transition: 'pop-top-right' }}
+              position="top-end"
+              width={220}
+              withinPortal
+              radius="md"
+            >
+              <Menu.Target>
+                <Button style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }} rightSection={<IconChevronDown size={18} stroke={1.5} />} pr={12} radius="md">
+                  {lang.firstLanguage.name}
+                </Button>
+              </Menu.Target>
+              <Menu.Dropdown className={classes.languageList}>
+                {Object.keys(languageList).map((languageName) => {
+                  return (
+                    <Menu.Item>
+                      {lang.firstLanguage.name !== languageName && lang.secondLanguage.name !== languageName && languageName}
+                    </Menu.Item>
+                  )
+                })}
+              </Menu.Dropdown>
+            </Menu>
+            <div>
+              <img src={interchangeIcon} alt="icon" width={16} height={16} />
+            </div>
+            <Menu
+              transitionProps={{ transition: 'pop-top-right' }}
+              position="top-end"
+              width={220}
+              withinPortal
+              radius="md"
+            >
+              <Menu.Target>
+                <Button style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }} rightSection={<IconChevronDown size={18} stroke={1.5} />} pr={12} radius="md">
+                  {lang.secondLanguage.name}
+                </Button>
+              </Menu.Target>
+              <Menu.Dropdown className={classes.languageList}>
+                {Object.keys(languageList).map((languageName) => {
+                  return (
+                    <Menu.Item>
+                      {lang.secondLanguage.name !== languageName && lang.firstLanguage.name !== languageName && languageName}
+                    </Menu.Item>
+                  )
+                })}
+              </Menu.Dropdown>
+            </Menu>
+          </Group>
+        </Card.Section>
+        <input type="text"
+          style={{
+            background: `${theme.color4}40`,
+            color: mode === 'light' ? 'white' : 'black'
+          }}
+          className={classes.languageEngineInput} value={inputText} onChange={(event) => setInputText(event.target.value)} />
+        <p>Translation: {outputText}</p>
+      </Card >
+    </>
+  )
+}
+
+export default LanguageEngine

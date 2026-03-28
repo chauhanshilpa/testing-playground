@@ -1,0 +1,47 @@
+.card {
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+}
+
+.section {
+    border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+    padding-left: var(--mantine-spacing-md);
+    padding-right: var(--mantine-spacing-md);
+    padding-bottom: var(--mantine-spacing-md);
+}
+
+.like {
+    color: var(--mantine-color-red-6);
+    width: 20px;
+    height: 20px;
+}
+
+.label {
+    text-transform: uppercase;
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 700;
+}
+
+.palette {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+}
+
+.languageList {
+    height: 25rem;
+    overflow-y: auto;
+}
+
+.report-card {
+    background: gray;
+}
+
+.languageEngineInput {
+    border-radius: 2px;
+    outline: none;
+    border: none;
+}
+
+.chatInput::placeholder {
+    color: var(--placeholder-color);
+}
