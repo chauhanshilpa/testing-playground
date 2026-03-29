@@ -8,8 +8,11 @@
 #header {
     display: flex;
     justify-content: space-between;
-    box-shadow: 0px 2px 5px rgb(230, 232, 232);
-    height: var(--header-height);
+    align-items: center;
+    min-height: var(--header-height);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .app_heading {
@@ -25,11 +28,10 @@
 .status_badge {
     color: white;
     height: fit-content;
-    padding: 0.25rem;
-    padding-left: 1rem;
-    border-top-left-radius: 55px;
-    border-bottom-left-radius: 55px;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    border-radius: 55px;
     margin-block: auto;
+    white-space: nowrap;
 }
 
 /* Main-content-style */
@@ -41,8 +43,31 @@
 .option {
     display: flex;
     align-items: center;
+    gap: 6px;
     border-radius: 5px;
-    padding: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    width: 100%;
+}
+
+.option-split {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 0.4rem 0.5rem;
+    width: 100%;
+}
+
+.option-split .option-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.option-split .option-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .light-mode-style {
@@ -57,9 +82,69 @@
 
 /* footer style */
 #footer {
-    height: var(--footer-height);
-    box-shadow: 0px 2px 5px rgb(230, 232, 232) inset;
+    min-height: var(--footer-height);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* ── Tablet header (≤ 992px) ── */
+@media (max-width: 992px) {
+    #header {
+        padding: 0.75rem 1rem;
+        align-content: flex-start;
+    }
+
+    /* push heading to a second full-width row */
+    .app_heading {
+        order: 3;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .app_heading h1 {
+        font-size: 1.5rem;
+    }
+
+    /* logo stays left (order 1 default), badge moves right of logo */
+    .status_badge {
+        margin-left: auto;
+    }
+}
+
+/* ── Mobile header (≤ 576px) ── */
+@media (max-width: 576px) {
+    #header {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.75rem;
+        gap: 0.4rem;
+    }
+
+    .app_heading {
+        order: unset;
+        width: 100%;
+        text-align: center;
+    }
+
+    .app_heading h1 {
+        font-size: 1.2rem;
+    }
+
+    .status_badge {
+        margin-left: 0;
+        align-self: center;
+    }
+}
+
+/* ── Main content tablet padding ── */
+@media (max-width: 992px) {
+    .main-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
 }

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Card, Group, Text } from '@mantine/core';
+import { Card, Group, Stack, Text } from '@mantine/core';
 import classes from '../../src/css-module/Card.module.css';
 import bot from "../../src/assets/bot.png";
 import { useState } from 'react';
@@ -65,16 +65,13 @@ const AiChatAssistance = ({ selectedPaletteId, mode }: AiChatAssistanceProps) =>
     return (
         <Card withBorder radius="md" p="md" className={classes.card} style={{ color: mode === 'light' ? 'white' : 'black', background: `${theme.color2}50` }}>
             <Card.Section className={classes.section} mt="md">
-                <Group justify="apart">
-                    <Text fz="lg" fw={500}>
+                <Stack gap="xs">
+                    <Group gap="xs">
                         <img src={bot} alt="icon" width={18} height={18} />
-                        Hi there!
-                    </Text>
-                    <Text fz="lg" fw={500}>
-                        How can I help you today
-                    </Text>
-                    <Text fz="lg" fw={500}>
-                        <div style={{ '--placeholder-color': mode === 'light' ? 'white' : 'black' } as React.CSSProperties}>
+                        <Text fz="lg" fw={500}>Hi there!</Text>
+                    </Group>
+                    <Text fz="sm">How can I help you today</Text>
+                    <div style={{ '--placeholder-color': mode === 'light' ? 'white' : 'black' } as React.CSSProperties}>
                             <TextInput
                                 radius="xl"
                                 size="md"
@@ -105,8 +102,7 @@ const AiChatAssistance = ({ selectedPaletteId, mode }: AiChatAssistanceProps) =>
                                 aria-label="Search questions"
                             />
                         </div>
-                    </Text>
-                </Group>
+                </Stack>
             </Card.Section>
 
         </Card >

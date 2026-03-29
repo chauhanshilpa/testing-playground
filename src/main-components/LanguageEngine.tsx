@@ -38,7 +38,7 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
         </Card.Section>
 
         <Card.Section className={classes.section}>
-          <Group gap={7} mt={5}>
+          <Group gap={7} mt={14} mb={8} wrap="nowrap">
             {/*  */}
             <Menu
               transitionProps={{ transition: 'pop-top-right' }}
@@ -48,7 +48,7 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
               radius="md"
             >
               <Menu.Target>
-                <Button style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }} rightSection={<IconChevronDown size={18} stroke={1.5} />} pr={12} radius="md">
+                <Button style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black', flex: 1 }} rightSection={<IconChevronDown size={18} stroke={1.5} />} pr={12} radius="md">
                   {lang.firstLanguage.name}
                 </Button>
               </Menu.Target>
@@ -73,7 +73,7 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
               radius="md"
             >
               <Menu.Target>
-                <Button style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }} rightSection={<IconChevronDown size={18} stroke={1.5} />} pr={12} radius="md">
+                <Button style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black', flex: 1 }} rightSection={<IconChevronDown size={18} stroke={1.5} />} pr={12} radius="md">
                   {lang.secondLanguage.name}
                 </Button>
               </Menu.Target>
@@ -92,10 +92,13 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
         <input type="text"
           style={{
             background: `${theme.color4}40`,
-            color: mode === 'light' ? 'white' : 'black'
+            color: mode === 'light' ? 'white' : 'black',
+            width: '100%',
+            padding: '0.4rem 0.5rem',
+            marginTop: '0.75rem',
           }}
           className={classes.languageEngineInput} value={inputText} onChange={(event) => setInputText(event.target.value)} />
-        <p>Translation: {outputText}</p>
+        <p style={{ marginTop: '0.5rem', padding: '0 0.25rem' }}>Translation: {outputText}</p>
       </Card >
     </>
   )

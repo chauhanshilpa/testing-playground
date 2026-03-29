@@ -40,47 +40,45 @@ const LayoutEngine = ({ setLayout, selectedPaletteId, mode }: LayoutEngineProps)
             </Card.Section>
 
             <Card.Section className={classes.section}>
-                <Group gap={7} mt={5}>
+                <Group gap={7} mt={20} mb={14} grow>
                     <Button
                         radius="l"
                         size="s"
-                        pr={14}
                         h={48}
-                        styles={{ section: { marginLeft: 22 } }}
                         style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }}
                         onClick={() => setLayout('grid')}
                     >
-                        <img src={gridViewIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                        <img src={gridViewIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)', marginRight: 6 }} />
                         Grid
                     </Button>
                     <Button
                         radius="l"
                         size="s"
-                        pr={14}
                         h={48}
-                        styles={{ section: { marginLeft: 22 } }}
                         style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }}
                         onClick={() => setLayout('list')}
                     >
-                        <img src={listViewIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                        <img src={listViewIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)', marginRight: 6 }} />
                         List
                     </Button>
                 </Group>
             </Card.Section>
             <Card.Section className={classes.section} mt="md">
-                <Group justify="apart">
+                <Group gap={7} mt={6} mb={8}>
                     {layoutAccessibilityOptionsList.map((option) => {
                         return (
                             <div key={option.id}
-                                style={{
-                                    background: `${theme.color4}40`,
-                                }}
-                                className={`option ${mode === 'light' ? 'option-dark' : 'option-light'}`}
+                                style={{ background: `${theme.color4}40` }}
+                                className={`option-split ${mode === 'light' ? 'option-dark' : 'option-light'}`}
                             >
-                                <img src={greenTick} alt="icon" width={16} height={16} />
-                                {option.shortCutKeys}
-                                <img src={option.icon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
-                                {option.featureName}
+                                <span className="option-left">
+                                    <img src={greenTick} alt="icon" width={16} height={16} />
+                                    {option.shortCutKeys}
+                                </span>
+                                <span className="option-right">
+                                    <img src={option.icon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                                    {option.featureName}
+                                </span>
                             </div>
                         )
                     })}

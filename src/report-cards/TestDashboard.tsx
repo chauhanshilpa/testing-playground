@@ -43,7 +43,7 @@ const TestDashboard = ({ selectedPaletteId, mode }: TestDashboardProps) => {
                 </Card.Section >
 
                 <Card.Section className={classes.section}>
-                    <Group gap={7} mt={5}>
+                    <Group gap={7} mt={20} mb={14}>
                         {/* list */}
                         {dashboardOptionsList.map((option) => {
                             return (

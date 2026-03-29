@@ -53,18 +53,20 @@ const Accessibility = ({ selectedPaletteId, mode }: AccessibilityProps) => {
       </Card.Section>
 
       <Card.Section className={classes.section}>
-        <Group gap={7} mt={5}>
+        <Group gap={7} mt={20} mb={14}>
           {/* list */}
           {accessibilityOptionsList.map((option) => {
             return (
-              <div key={option.id} style={{
-                background: `${theme.color4}40`,
-              }}
-                className={`option ${mode === 'light' ? 'option-dark' : 'option-light'}`}>
-                <img src={option.icon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
-                {option.shortCutKeys}
-                <img src={chevronRight} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
-                {option.featureName}
+              <div key={option.id} style={{ background: `${theme.color4}40` }}
+                className={`option-split ${mode === 'light' ? 'option-dark' : 'option-light'}`}>
+                <span className="option-left">
+                  <img src={option.icon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                  {option.shortCutKeys}
+                </span>
+                <span className="option-right">
+                  <img src={chevronRight} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                  {option.featureName}
+                </span>
               </div>
             )
           })}

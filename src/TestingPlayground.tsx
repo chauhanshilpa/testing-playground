@@ -23,12 +23,12 @@ const TestingPlayground = () => {
             style={{
                 background: `linear-gradient(to bottom right, ${theme.color1} 0%, ${theme.color2}, ${theme.color3}, ${theme.color4})`,
             }}>
-            <header id="header">
-                < Header mode={mode} selectedPaletteId={selectedPaletteId} />
+            <header id="header" style={{ boxShadow: mode === 'light' ? '0px 2px 5px rgb(230, 232, 232)' : '0px 2px 5px rgb(42, 43, 43)' }}>
+                <Header mode={mode} selectedPaletteId={selectedPaletteId} />
             </header >
             <main id="main-content">
-                <Container my="md">
-                    <SimpleGrid cols={{ base: 1, xs: 4 }}>
+                <Container my="md" size="xl" className="main-container">
+                    <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing={{ base: 'sm', sm: 'md' }}>
                         <Stack>
                             <TestDashboard selectedPaletteId={selectedPaletteId} mode={mode} />
                             <Accessibility selectedPaletteId={selectedPaletteId} mode={mode} />
@@ -56,7 +56,7 @@ const TestingPlayground = () => {
                     </SimpleGrid>
                 </Container>
             </main>
-            <footer id="footer">
+            <footer id="footer" style={{ boxShadow: mode === 'light' ? `0px 2px 80px ${theme.color3} inset` : `0px 2px 88px ${theme.color3} inset` }}>
                 <Footer />
             </footer>
         </div >

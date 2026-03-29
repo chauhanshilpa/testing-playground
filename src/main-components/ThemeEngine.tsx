@@ -27,38 +27,31 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
             </Card.Section>
 
             <Card.Section className={classes.section} mt="md">
-                <Group justify="apart">
-                    <Text fz="lg" fw={500}>
-                        Dark Mode
-                        <Switch
-                            styles={{
-                                track: {
-                                    backgroundColor: `${theme.color4}40`,
-                                },
-                                trackLabel: {
-                                    color: mode === 'light' ? 'white' : 'black'
-                                },
-                            }}
-                            checked={
-                                mode === 'light' ?
-                                    false
-                                    :
-                                    true
+                <Group justify="space-between" align="center">
+                    <Text fz="lg" fw={500}>Dark Mode</Text>
+                    <Switch
+                        styles={{
+                            track: {
+                                backgroundColor: `${theme.color4}40`,
+                            },
+                            trackLabel: {
+                                color: mode === 'light' ? 'white' : 'black'
+                            },
+                        }}
+                        checked={mode !== 'light'}
+                        onLabel="ON"
+                        offLabel="OFF"
+                        className={classes.switch}
+                        size="lg"
+                        aria-label='Dark Mode'
+                        onChange={() => {
+                            if (mode === 'light') {
+                                setMode('dark')
+                            } else {
+                                setMode("light")
                             }
-                            onLabel="ON"
-                            offLabel="OFF"
-                            className={classes.switch}
-                            size="lg"
-                            aria-label='Dark Mode'
-                            onChange={() => {
-                                if (mode === 'light') {
-                                    setMode('dark')
-                                } else {
-                                    setMode("light")
-                                }
-                            }}
-                        />
-                    </Text>
+                        }}
+                    />
                 </Group>
             </Card.Section>
 
@@ -68,7 +61,7 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
                         Color Scheme
                     </Text>
                 </Group>
-                <div style={{ display: 'flex', alignItems: "center", justifyContent: 'space-around' }}>
+                <div style={{ display: 'flex', alignItems: "center", gap: '6px' }}>
                     {colorSchemeList.map((palette) => {
                         return (
                             <div key={palette.paletteId} className={classes.palette} onClick={() => setSelectedPaletteId(palette.paletteId)} style={{ background: `linear-gradient(to right, ${palette.color1}, ${palette.color2}, ${palette.color3}, ${palette.color4})` }}>
@@ -80,14 +73,11 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
             </Card.Section>
 
             <Card.Section className={classes.section}>
-                <Group gap={7} mt={5}>
+                <Group gap={7} mt={20} mb={14} grow>
                     <Button
-                        // variant="light"
                         radius="l"
                         size="s"
-                        pr={14}
                         h={48}
-                        styles={{ section: { marginLeft: 22 } }}
                         style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }}
                         onClick={() => {
                             if (mode === 'light') {
@@ -97,16 +87,13 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
                             }
                         }}
                     >
-                        <img src={undoIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                        <img src={undoIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)', marginRight: 6 }} />
                         Undo
                     </Button>
                     <Button
-                        // variant="light"
                         radius="l"
                         size="s"
-                        pr={14}
                         h={48}
-                        styles={{ section: { marginLeft: 22 } }}
                         style={{ background: `${theme.color4}40`, color: mode === 'light' ? 'white' : 'black' }}
                         onClick={() => {
                             if (mode === 'light') {
@@ -116,7 +103,7 @@ const ThemeEngine = ({ selectedPaletteId, setSelectedPaletteId, mode, setMode }:
                             }
                         }}
                     >
-                        <img src={redoIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)' }} />
+                        <img src={redoIcon} alt="icon" width={16} height={16} style={{ filter: mode === 'light' ? '' : 'invert(1)', marginRight: 6 }} />
                         Redo
                     </Button>
                 </Group>
