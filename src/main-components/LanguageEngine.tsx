@@ -21,10 +21,23 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
 
   useEffect(() => {
     (async function () {
-      const text = await translate(inputText, { to: lang.secondLanguage.code, from: lang.firstLanguage.code });
-      setOutputText(text);
+      await handleLanguageConversion();
     })()
-  }, [inputText])
+    //eslint-disable-next-line
+  }, [inputText, lang.firstLanguage.code, lang.secondLanguage.code])
+
+  async function handleLanguageConversion() {
+    const text = await translate(inputText, { to: lang.secondLanguage.code, from: lang.firstLanguage.code });
+    setOutputText(text);
+  }
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) {
+    const value = event.target.value
+    setInputText(value)
+    if (inputText || value === "") {
+      setOutputText("")
+    }
+  }
 
   return (
     <>
@@ -53,13 +66,13 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
                 </Button>
               </Menu.Target>
               <Menu.Dropdown className={classes.languageList}>
-                {Object.keys(languageList).map((languageName) => {
-                  return (
-                    <Menu.Item>
-                      {lang.firstLanguage.name !== languageName && lang.secondLanguage.name !== languageName && languageName}
+                {Object.entries(languageList)
+                  .filter(([languageName]) => languageName !== lang.firstLanguage.name && languageName !== lang.secondLanguage.name)
+                  .map(([languageName, code]) => (
+                    <Menu.Item key={languageName} onClick={() => setLang(prev => ({ ...prev, firstLanguage: { name: languageName, code: code } }))}>
+                      {languageName}
                     </Menu.Item>
-                  )
-                })}
+                  ))}
               </Menu.Dropdown>
             </Menu>
             <div>
@@ -78,10 +91,10 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
                 </Button>
               </Menu.Target>
               <Menu.Dropdown className={classes.languageList}>
-                {Object.keys(languageList).map((languageName) => {
+                {Object.entries(languageList).filter(([languageName]) => lang.secondLanguage.name !== languageName && lang.firstLanguage.name !== languageName).map(([languageName, code]) => {
                   return (
-                    <Menu.Item>
-                      {lang.secondLanguage.name !== languageName && lang.firstLanguage.name !== languageName && languageName}
+                    <Menu.Item onClick={() => setLang(prev => ({ ...prev, secondLanguage: { name: languageName, code: code } }))}>
+                      {languageName}
                     </Menu.Item>
                   )
                 })}
@@ -97,7 +110,7 @@ const LanguageEngine = ({ selectedPaletteId, mode }: LanguageEngineProps) => {
             padding: '0.4rem 0.5rem',
             marginTop: '0.75rem',
           }}
-          className={classes.languageEngineInput} value={inputText} onChange={(event) => setInputText(event.target.value)} />
+          className={classes.languageEngineInput} value={inputText} onChange={(event) => handleInputChange(event)} />
         <p style={{ marginTop: '0.5rem', padding: '0 0.25rem' }}>Translation: {outputText}</p>
       </Card >
     </>
